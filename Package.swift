@@ -16,7 +16,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/stephencelis/CSQLite.git", from: "0.0.3")
+        .package(url: "https://github.com/scade-platform/CSQLite.git", branch: "master")
     ],
     targets: [
         .target(
