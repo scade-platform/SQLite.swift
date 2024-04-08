@@ -15,9 +15,19 @@ let package = Package(
             targets: ["SQLite"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/stephencelis/CSQLite.git", from: "0.0.3")
+    ],
     targets: [
         .target(
             name: "SQLite",
+            dependencies: [
+                .product(
+                    name: "CSQLite",
+                    package: "CSQLite",
+                    condition: .when(platforms: [.linux, .android])
+                )
+            ],
             exclude: [
                 "Info.plist"
             ]
@@ -38,11 +48,3 @@ let package = Package(
     ]
 )
 
-#if os(Linux)
-package.dependencies = [
-    .package(url: "https://github.com/stephencelis/CSQLite.git", from: "0.0.3")
-]
-package.targets.first?.dependencies += [
-    .product(name: "CSQLite", package: "CSQLite")
-]
-#endif
